@@ -1,0 +1,27 @@
+[
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "address[]",
+				"name": "targets",
+				"type": "address[]"
+			},
+			{
+				"internalType": "uint256[]",
+				"name": "values",
+				"type": "uint256[]"
+			},
+			{
+				"internalType": "bytes[]",
+				"name": "datas",
+				"type": "bytes[]"
+			}
+		],
+		"name": "batchSend",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	}
+]
