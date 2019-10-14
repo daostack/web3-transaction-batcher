@@ -5,38 +5,16 @@ cache: npm
 
 sudo: required
 
-services:
-  - docker
 notifications:
   email: false
 
-before_install:
-  - sudo apt-get install libsecret-1-dev
 script:
   - echo 'npm ci:' && echo -en 'travis_fold:start:script.1\\r'
   - npm ci
   - echo -en 'travis_fold:end:script.1\\r'
 
-  - docker-compose up -d graph-node
-  - ./scripts/wait-for-it.sh 127.0.0.1:8545
-  - ./scripts/wait-for-it.sh 127.0.0.1:8000
-  - ./scripts/wait-for-it.sh 127.0.0.1:8020
+  # start ganache in background
+  - npm run ganache &
 
-  - echo 'Debug info:' && echo -en 'travis_fold:start:script.3\\r'
-  - docker-compose logs ganache
-  - docker-compose logs graph-node
-  - echo -en 'travis_fold:end:script.3\\r'
-
-
-  # sleep a long time to wait fo rthe graph-node to finish indexing
-  #  until https://github.com/daostack/subgraph/issues/241 is resolved
-  - sleep 60
-  - echo -en 'travis_fold:end:script.2\\r'
-  - npm run lint
-  - npm run test
-  - npm run build
-
-after_success:
-  # - npm run report-coverage
-  # - test $TRAVIS_BRANCH = "master" && npm run deploy-docs
-  # - test $TRAVIS_BRANCH = "master" && npm run semantic-release
+  # compile our contract
+  - npm run compile

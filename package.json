@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "ganache": "ganache-cli --deterministic"
+    "ganache": "ganache-cli --deterministic",
+    "compile": "solcjs contracts/Batcher.sol --bin --abi --output-dir abis"
   },
   "author": "",
   "license": "ISC",
@@ -13,6 +14,7 @@
     "ganache": "^6.4.4",
     "ganache-cli": "^6.7.0",
     "jest": "^24.9.0",
+    "solc": "^0.5.12",
     "web3": "^1.2.1"
   }
 }
