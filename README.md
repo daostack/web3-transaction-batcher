@@ -5,7 +5,7 @@ A utility to batch Ethereum transactions in a single transaction.
 ## Why use this?
 
 - better user experience if you need do send (or re-send) many transactions
-- safe gas
+- save gas
 ## Usage
 
 Install the package `npm install ethereum-transaction-batcher`
