@@ -6,7 +6,9 @@
   "scripts": {
     "test": "jest",
     "ganache": "ganache-cli --deterministic",
-    "compile": "solcjs contracts/Batcher.sol --bin --abi --output-dir abis"
+    "compile2": "solcjs contracts/Batcher.sol --standard-json contracts.json --output-dir abis",
+    "compile": "node compile.js",
+    "postinstall": "npm run compile"
   },
   "author": "",
   "license": "ISC",
