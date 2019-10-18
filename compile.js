@@ -28,4 +28,4 @@ console.log(input)
 const output = solc.compile(JSON.stringify(input))
 console.log(output)
 
-fs.writeFileSync(`./abis.json`, output)
+fs.writeFileSync(`./build.json`, output)
