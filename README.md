@@ -5,7 +5,7 @@ A utility to batch Ethereum transactions in a single transaction.
 ## Why use this?
 
 - better user experience if you need do send (or re-send) many transactions
-- safe gas
+- save gas
 ## Usage
 
 Install the package `npm install ethereum-transaction-batcher`
@@ -18,7 +18,7 @@ const Batcher = require('ethereum-transaction-batcher')
 const batcherAddress = '0x741A4dCaD4f72B83bE9103a383911d78362611cf'
 const web3 = new Web3('http://localhost:8545/') // or another ethereum provider
 
-batcher. = new Batcher({web3, batcherAddress})
+batcher = new Batcher({web3, batcherAddress})
 
 // create web3 transactions as you would normally
 const tx1 = myContract.myMethod(myArg1, myarg2)
