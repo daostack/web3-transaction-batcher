@@ -12,7 +12,8 @@ A utility to batch Ethereum transactions in a single transaction.
 
 ## Usage
 
-Install the package `npm install ethereum-transaction-batcher`
+Install the package `npm install ethereum-transaction-batcher`.
+
 
 ```javascript
 const Web3 = require('web3')
@@ -54,14 +55,19 @@ const batcher = new Batcher({
 })
 ```
 
+A `Batcher` instance exposes a fucntion `sendTransaction`. The signature and behavior of the function is similar to the [sendTransaction method in web3.js](https://web3js.readthedocs.io/en/v1.2.0/web3-eth.html#sendtransaction) - the function can be called by providing it with a callback,
+if the callback is omitted it will return a Promise - but instead of taking a single transaction object as its first argument, it takes a list of transactions.
+
 ```javascript
 batcher.sendTransaction(
   transactions, // a list of web3-style transaction objects
   callback // optional, like in web3.js
 )
-
 ```
-`sendTransaction` behaves like `web3.eth.sendTransaction` -if a callback is provided, it will be called, if no callback is provided, it will return a promise that resolves to a transaction receipt.
+
+The `batcher.sendTransaction` call will try to execute the entire list of transactions in the order that they are given. If one of them fails, the batched transaction fails atomically - i.e.\ none of the transactions will be executed.  
+
+`sendTransaction` behaves like `web3.eth.sendTransaction` - if a callback is provided, it will be called, if no callback is provided, it will return a promise that resolves to a transaction receipt.
 
 ## The Contract
 
