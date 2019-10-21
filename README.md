@@ -1,5 +1,7 @@
 # Ethereum Transaction Batcher
 
+[![Build Status](https://travis-ci.com/daostack/web3-transaction-batcher.svg?branch=master)](https://travis-ci.org/daostack/alchemy)
+
 A utility to batch Ethereum transactions in a single transaction.
 
 ## Why use this?
