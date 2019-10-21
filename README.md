@@ -42,9 +42,9 @@ const tx3 =  {
 // send the transactions as a single transaction to the blockchain
 // the batched transaction will fail if one of the subtransactions fail
 const receipt = await batcher.sendTransaction([tx1, tx2, tx3])
-
-
+console.log(receipt.events)
 ```
+
 ## API
 
 
