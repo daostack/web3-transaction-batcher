@@ -30,8 +30,15 @@ const input = {
     }
   }
 }
-console.log(input)
+// console.log(input)
 const output = solc.compile(JSON.stringify(input))
-console.log(output)
+const errors = JSON.parse(output).errors
 
-fs.writeFileSync(`./build.json`, output)
+console.log(errors)
+
+if (errors.filter((err) => err.severity !== 'warning').length > 0) {
+  throw Error(`Compile error -- see stdout`)
+}
+const outFile = './build.json'
+fs.writeFileSync(outFile, output)
+console.log(`output written to ${outFile}`)

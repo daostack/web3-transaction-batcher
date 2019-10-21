@@ -6,13 +6,13 @@
   "scripts": {
     "test": "jest",
     "ganache": "ganache-cli --deterministic",
-    "compile2": "solcjs contracts/Batcher.sol --standard-json contracts.json --output-dir abis",
     "compile": "node compile.js",
     "postinstall": "npm run compile"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "bn.js": "^5.0.0",
     "ganache": "^6.4.4",
     "ganache-cli": "^6.7.0",
     "jest": "^24.9.0",

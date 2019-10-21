@@ -3,7 +3,9 @@ pragma experimental ABIEncoderV2;
 
 contract TransactionBatcher {
     function batchSend(address[] memory targets, uint[] memory values, bytes[] memory datas) public payable {
-        for (uint i = 0; i < targets.length; i++)
-            targets[i].call.value(values[i])(datas[i]);
+        for (uint i = 0; i < targets.length; i++) {
+            (bool success,) = targets[i].call.value(values[i])(datas[i]);
+            if (!success) revert('transaction failed');
+        }
     }
 }

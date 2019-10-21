@@ -6,6 +6,8 @@ A utility to batch Ethereum transactions in a single transaction.
 
 - better user experience if you need do send (or re-send) many transactions
 - save gas
+- execute a sequence of transactions as an atomic transaction - if one fails, all do
+
 ## Usage
 
 Install the package `npm install ethereum-transaction-batcher`
@@ -23,24 +25,20 @@ batcher = new Batcher({web3, batcherAddress})
 // create web3 transactions as you would normally
 const tx1 = myContract.myMethod(myArg1, myarg2)
 
-// deploy a contract
-const tx2 = {
-  data: '0x123454...',
-}
 // call a function on a contract
-const tx3 = {
+const tx2 = {
   to: '0x11f4d0A3c12e86B4b5F39B213F7E19D048276DAe',
   data: '0x123454...',
 }
 // send some money to your friend
-const tx4 =  {
+const tx3 =  {
   to: '0x11f4d0A3c12e86B4b5F39B213F7E19D048276DAe',
   value: '1000000000000000'
 }
 
 // send the transactions as a single transaction to the blockchain
-const receipt = await batcher.sendTransaction([tx1, tx2, tx3, tx4])
-
+// the batched transaction will fail if one of the subtransactions fail
+const receipt = await batcher.sendTransaction([tx1, tx2, tx3])
 
 
 ```
@@ -64,6 +62,12 @@ batcher.sendTransaction(
 `sendTransaction` behaves like `web3.eth.sendTransaction` -if a callback is provided, it will be called, if no callback is provided, it will return a promise that resolves to a transaction receipt.
 
 
+## Limitations
+
+* The batched transactions will be sent from the Batcher contract - which means that transactions that require `msg.sender` to be (say) the account  with which the batched transaction is signed, will fail. However, the batcher _will_ work when for sending Ether in batch transactions.
+* The batcher contract does not
+
+**TODO** forward tokens, so that one can batch-send tokens?
 
 # License
 
