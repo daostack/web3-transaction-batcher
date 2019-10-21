@@ -61,13 +61,20 @@ batcher.sendTransaction(
 ```
 `sendTransaction` behaves like `web3.eth.sendTransaction` -if a callback is provided, it will be called, if no callback is provided, it will return a promise that resolves to a transaction receipt.
 
+## The Contract
+
+The [solidity code](./contracts/Batcher.sol) is here.
 
 ## Limitations
 
 * The batched transactions will be sent from the Batcher contract - which means that transactions that require `msg.sender` to be (say) the account  with which the batched transaction is signed, will fail. However, the batcher _will_ work when for sending Ether in batch transactions.
-* The batcher contract does not
+* The batcher contract can only cal functions on existing contracts - it does not create new contracts
 
-**TODO** forward tokens, so that one can batch-send tokens?
+## TODO
+
+* use assembly `call` to save gas
+* use assembly `create` to also allow for contract creation
+* forward tokens, so that one can batch-send tokens as well as Ether
 
 # License
 
